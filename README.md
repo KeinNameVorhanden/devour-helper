@@ -6,7 +6,7 @@
 <li>Ghetto Player ESP
 <li>Anna / Molly ESP
 <li>Demon ESP (AI)
-<li>Hey / Rotten Flesh ESP
+<li>Hay / Rotten Flesh ESP
 <li>Goat / Rat ESP
 <li>Gasoline ESP
 <li>Rose ESP
