@@ -9,11 +9,15 @@ using System.Linq;
 using BehaviorDesigner.Runtime;
 using Opsive.Shared.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace ExampleAssembly
 {
     public class Cheat : MonoBehaviour
     {
+        private string sceneName;
+        private bool isDevour;
+
         // Runs once.
         private void Start()
         {
@@ -41,6 +45,9 @@ namespace ExampleAssembly
         {
             GUI.color = Color.white;
 
+            sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName == "Devour")
+                isDevour = true;
 
             // Ghetto Player ESP
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
@@ -53,14 +60,14 @@ namespace ExampleAssembly
                 }
             }
 
-            // Goat ESP (functional)
+            // Goat/Rat ESP (functional)
             foreach (GameObject goat in GameObject.FindGameObjectsWithTag("Goat"))
             {
                 Vector3 goat_vec = Camera.main.WorldToScreenPoint(goat.transform.position);
                 if (goat_vec.z > 0f)
                 {
                     goat_vec.y = UnityEngine.Screen.height - (goat_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(goat_vec.x, goat_vec.y), new Vector2(100f, 100f)), "Goat");
+                    GUI.Label(new Rect(new Vector2(goat_vec.x, goat_vec.y), new Vector2(100f, 100f)), isDevour ? "Goat" : "Rat");
                 }
             }
 
@@ -75,25 +82,25 @@ namespace ExampleAssembly
                 }
             }
 
-            // Azazel ESP (functional)
+            // Anna/Molly (Azazel) ESP (functional)
             foreach (GameObject azazel in GameObject.FindGameObjectsWithTag("Azazel"))
             {
                 Vector3 azazel_vec = Camera.main.WorldToScreenPoint(azazel.transform.position);
                 if (azazel_vec.z > 0f)
                 {
                     azazel_vec.y = UnityEngine.Screen.height - (azazel_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(azazel_vec.x, azazel_vec.y), new Vector2(100f, 100f)), "Azazel");
+                    GUI.Label(new Rect(new Vector2(azazel_vec.x, azazel_vec.y), new Vector2(100f, 100f)), isDevour ? "Anna" : "Molly");
                 }
             }
 
-            // Hay ESP (functional)
+            // Hay/Rotten Flesh ESP (functional)
             foreach (GameObject hay in GameObject.FindGameObjectsWithTag("Hay"))
             {
                 Vector3 hay_vec = Camera.main.WorldToScreenPoint(hay.transform.position);
                 if (hay_vec.z > 0f)
                 {
                     hay_vec.y = UnityEngine.Screen.height - (hay_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(hay_vec.x, hay_vec.y), new Vector2(100f, 100f)), "Hay");
+                    GUI.Label(new Rect(new Vector2(hay_vec.x, hay_vec.y), new Vector2(100f, 100f)), isDevour ? "Hay" : "Flesh");
                 }
             }
 
