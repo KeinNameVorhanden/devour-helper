@@ -3,11 +3,13 @@
 <a href="https://github.com/bensm1/PhasmoPAYTOCHEATphobia">GitHub of Source</a> <br>
 
 # Features
-<li>Ghetto Player ESP
-<li>Anna / Molly ESP
-<li>Demon ESP (AI)
-<li>Hay / Rotten Flesh ESP
-<li>Goat / Rat ESP
-<li>Gasoline ESP
-<li>Rose ESP
-<li>Key ESP
+<li>ESP
+<ul>
+<li>Ghetto Player
+<li>Anna / Molly
+<li>Demon (AI)
+<li>Hay / Rotten Flesh
+<li>Goat / Rat
+<li>Gasoline
+<li>Rose
+<li>Key
