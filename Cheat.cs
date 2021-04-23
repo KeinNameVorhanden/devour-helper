@@ -15,8 +15,13 @@ namespace ExampleAssembly
 {
     public class Cheat : MonoBehaviour
     {
-        private string sceneName;
-        private bool isDevour;
+        private string sceneName = "";
+        private bool isDevour = false;
+
+        private double get_dist(float a_x, float a_y, float a_z, float b_x, float b_y, float b_z)
+        {
+            return Math.Sqrt(Math.Pow(a_x - b_x, 2) + Math.Pow(a_y - b_y, 2) + Math.Pow(a_z - b_z, 2));
+        }
 
         // Runs once.
         private void Start()
@@ -28,8 +33,9 @@ namespace ExampleAssembly
                 while (true)
                 {
                     //
-
-                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Console.WriteLine("Current Scene: " + sceneName);
+                    Thread.Sleep(30000);
                 }
             }).Start();
         }
@@ -37,7 +43,11 @@ namespace ExampleAssembly
         // Runs every frame.
         private void Update()
         {
-            //
+            sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName == "Devour" || sceneName == "Menu")
+                isDevour = true;
+            else
+                isDevour = false;
         }
 
         // Runs every frame, only use it for drawing using Unity's UI.
@@ -45,15 +55,16 @@ namespace ExampleAssembly
         {
             GUI.color = Color.white;
 
-            sceneName = SceneManager.GetActiveScene().name;
-            if (sceneName == "Devour")
-                isDevour = true;
+            if (sceneName == "Menu")
+                GUI.Label(new Rect(new Vector2(5f, 5f), new Vector2(150f, 50f)), "Menu");
+            else
+                GUI.Label(new Rect(new Vector2(5f, 5f), new Vector2(150f, 50f)), isDevour ? "Farmhouse" : "Asylum");
 
             // Ghetto Player ESP
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
             {
                 Vector3 player_vec = Camera.main.WorldToScreenPoint(player.transform.position);
-                if (player_vec.z > -1f)
+                if (player_vec.z > 0f)
                 {
                     player_vec.y = UnityEngine.Screen.height - (player_vec.y + 1f);
                     GUI.Label(new Rect(new Vector2(player_vec.x, player_vec.y), new Vector2(100f, 100f)), "Player");
@@ -107,7 +118,7 @@ namespace ExampleAssembly
             // First Aid ESP (untested)
             foreach (SurvivalReviveInteractable survivalReviveInteractable in UnityEngine.Object.FindObjectsOfType<SurvivalReviveInteractable>())
             {
-                if (survivalReviveInteractable.name.ToLower().IndexOf("aid") != -1)
+                if (survivalReviveInteractable.name.ToLower().IndexOf("firstaid") != -1)
                 {
                     Vector3 med_vec = Camera.main.WorldToScreenPoint(survivalReviveInteractable.transform.position);
                     if (med_vec.z > 0f)
@@ -117,6 +128,17 @@ namespace ExampleAssembly
                     }
                 }
             }
+
+            /* First Aid ESP (untested)
+            foreach (GameObject med in GameObject.FindGameObjectsWithTag("FirstAid"))
+            {
+                Vector3 med_vec = Camera.main.WorldToScreenPoint(med.transform.position);
+                if (med_vec.z > 0f)
+                {
+                    med_vec.y = UnityEngine.Screen.height - (med_vec.y + 1f);
+                    GUI.Label(new Rect(new Vector2(med_vec.x, med_vec.y), new Vector2(100f, 100f)), "Med");
+                }
+            }*/
 
             // Gasoline ESP (functional)
             foreach (SurvivalInteractable survivalInteractable in UnityEngine.Object.FindObjectsOfType<SurvivalInteractable>())
