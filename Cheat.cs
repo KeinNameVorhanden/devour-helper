@@ -23,6 +23,14 @@ namespace ExampleAssembly
             return Math.Sqrt(Math.Pow(a_x - b_x, 2) + Math.Pow(a_y - b_y, 2) + Math.Pow(a_z - b_z, 2));
         }
 
+        private void drawCheatInfo(float x, float y, string txt)
+        {
+            GUI.color = Color.black;
+            GUI.Label(new Rect(new Vector2(x + 1, y + 1), new Vector2(100f, 100f)), txt);
+            GUI.color = Color.white;
+            GUI.Label(new Rect(new Vector2(x, y), new Vector2(100f, 100f)), txt);
+        }
+
         // Runs once.
         private void Start()
         {
@@ -56,9 +64,9 @@ namespace ExampleAssembly
             GUI.color = Color.white;
 
             if (sceneName == "Menu")
-                GUI.Label(new Rect(new Vector2(5f, 5f), new Vector2(150f, 50f)), "Menu");
+                drawCheatInfo(8f, 5f, "Menu");
             else
-                GUI.Label(new Rect(new Vector2(5f, 5f), new Vector2(150f, 50f)), isDevour ? "Farmhouse" : "Asylum");
+                drawCheatInfo(8f, 5f, isDevour ? "Farmhouse" : "Asylum");
 
             // Ghetto Player ESP
             foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
@@ -67,7 +75,7 @@ namespace ExampleAssembly
                 if (player_vec.z > 0f)
                 {
                     player_vec.y = UnityEngine.Screen.height - (player_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(player_vec.x, player_vec.y), new Vector2(100f, 100f)), "Player");
+                    drawCheatInfo(player_vec.x, player_vec.y, "Player");
                 }
             }
 
@@ -78,7 +86,7 @@ namespace ExampleAssembly
                 if (goat_vec.z > 0f)
                 {
                     goat_vec.y = UnityEngine.Screen.height - (goat_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(goat_vec.x, goat_vec.y), new Vector2(100f, 100f)), isDevour ? "Goat" : "Rat");
+                    drawCheatInfo(goat_vec.x, goat_vec.y, isDevour ? "Goat" : "Rat");
                 }
             }
 
@@ -89,7 +97,7 @@ namespace ExampleAssembly
                 if (ai_vec.z > 0f)
                 {
                     ai_vec.y = UnityEngine.Screen.height - (ai_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(ai_vec.x, ai_vec.y), new Vector2(100f, 100f)), "AI");
+                    drawCheatInfo(ai_vec.x, ai_vec.y, isDevour ? "Demon" : "Inmate");
                 }
             }
 
@@ -100,7 +108,7 @@ namespace ExampleAssembly
                 if (azazel_vec.z > 0f)
                 {
                     azazel_vec.y = UnityEngine.Screen.height - (azazel_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(azazel_vec.x, azazel_vec.y), new Vector2(100f, 100f)), isDevour ? "Anna" : "Molly");
+                    drawCheatInfo(azazel_vec.x, azazel_vec.y, isDevour ? "Anna" : "Molly");
                 }
             }
 
@@ -111,11 +119,11 @@ namespace ExampleAssembly
                 if (hay_vec.z > 0f)
                 {
                     hay_vec.y = UnityEngine.Screen.height - (hay_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(hay_vec.x, hay_vec.y), new Vector2(100f, 100f)), isDevour ? "Hay" : "Flesh");
+                    drawCheatInfo(hay_vec.x, hay_vec.y, isDevour ? "Hay" : "Flesh");
                 }
             }
 
-            // First Aid ESP (untested)
+            /* First Aid ESP (untested)
             foreach (SurvivalReviveInteractable survivalReviveInteractable in UnityEngine.Object.FindObjectsOfType<SurvivalReviveInteractable>())
             {
                 if (survivalReviveInteractable.name.ToLower().IndexOf("firstaid") != -1)
@@ -124,21 +132,21 @@ namespace ExampleAssembly
                     if (med_vec.z > 0f)
                     {
                         med_vec.y = UnityEngine.Screen.height - (med_vec.y + 1f);
-                        GUI.Label(new Rect(new Vector2(med_vec.x, med_vec.y), new Vector2(100f, 100f)), "Med");
+                        drawCheatInfo(med_vec.x, med_vec.y,"Med");
                     }
                 }
-            }
+            }*/
 
-            /* First Aid ESP (untested)
+            //* First Aid ESP (functional)
             foreach (GameObject med in GameObject.FindGameObjectsWithTag("FirstAid"))
             {
                 Vector3 med_vec = Camera.main.WorldToScreenPoint(med.transform.position);
                 if (med_vec.z > 0f)
                 {
                     med_vec.y = UnityEngine.Screen.height - (med_vec.y + 1f);
-                    GUI.Label(new Rect(new Vector2(med_vec.x, med_vec.y), new Vector2(100f, 100f)), "Med");
+                    drawCheatInfo(med_vec.x, med_vec.y, "Med");
                 }
-            }*/
+            }//*/
 
             // Gasoline ESP (functional)
             foreach (SurvivalInteractable survivalInteractable in UnityEngine.Object.FindObjectsOfType<SurvivalInteractable>())
@@ -149,7 +157,7 @@ namespace ExampleAssembly
                     if (gas_vec.z > 0f)
                     {
                         gas_vec.y = UnityEngine.Screen.height - (gas_vec.y + 1f);
-                        GUI.Label(new Rect(new Vector2(gas_vec.x, gas_vec.y), new Vector2(100f, 100f)), "Fuel");
+                        drawCheatInfo(gas_vec.x, gas_vec.y, "Fuel");
                     }
                 }
             }
@@ -163,7 +171,7 @@ namespace ExampleAssembly
                     if (rose_vec.z > 0f)
                     {
                         rose_vec.y = UnityEngine.Screen.height - (rose_vec.y + 1f);
-                        GUI.Label(new Rect(new Vector2(rose_vec.x, rose_vec.y), new Vector2(100f, 100f)), "Rose");
+                        drawCheatInfo(rose_vec.x, rose_vec.y, "Rose");
                     }
                 }
             }
@@ -177,7 +185,7 @@ namespace ExampleAssembly
                     if (key_vec.z > 0f)
                     {
                         key_vec.y = UnityEngine.Screen.height - (key_vec.y + 1f);
-                        GUI.Label(new Rect(new Vector2(key_vec.x, key_vec.y), new Vector2(100f, 100f)), "Key");
+                        drawCheatInfo(key_vec.x, key_vec.y, "Key");
                     }
                 }
             }
