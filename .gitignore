@@ -4,3 +4,5 @@ Properties/*
 release/*
 ExampleAssembly.c*
 favicon.ico
+packages/*
+*.config
