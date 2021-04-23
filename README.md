@@ -5,9 +5,9 @@
 # Features
 <li>ESP
 <ul>
-<li>Ghetto Player
+<li>Player
 <li>Anna / Molly
-<li>Demon (AI)
+<li>Demon
 <li>Hay / Rotten Flesh
 <li>Goat / Rat
 <li>Gasoline
