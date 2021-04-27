@@ -8,7 +8,7 @@
 <ul>
 <li>Player
 <li>Anna / Molly
-<li>Demon
+<li>Demon / Inmate
 <li>Hay / Rotten Flesh
 <li>Goat / Rat
 <li>Gasoline / Fuse
