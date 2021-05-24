@@ -18,4 +18,4 @@
 </li>
 
 # Preview
-<img src="https://ganja.taxi/bNMRcvNVkW.png" width=480px>
+<img src="https://cloak.vision/iRMRcvNVkW.png" width=480px>
